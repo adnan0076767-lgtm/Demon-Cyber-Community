@@ -46,7 +46,24 @@ body{
     min-height:100vh;
 }
 
+/* =========================================================
+   MATRIX BACKGROUND
+   ========================================================= */
+
+#matrix{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    pointer-events:none;
+    opacity:.55;
+    display:block;
+    background:#000;
+}
+
 /* DARK GRID */
+
 body::before{
     content:"";
     position:fixed;
@@ -61,6 +78,7 @@ body::before{
 }
 
 /* SCANLINES */
+
 body::after{
     content:"";
     position:fixed;
@@ -76,22 +94,12 @@ body::after{
     );
 }
 
-/* MATRIX BACKGROUND */
-#matrix{
-    position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
-    z-index:-5;
-    pointer-events:none;
-    opacity:.30;
-}
-
 /* VIGNETTE */
+
 .vignette{
     position:fixed;
     inset:0;
-    z-index:-3;
+    z-index:1;
     pointer-events:none;
     background:
         radial-gradient(
@@ -103,6 +111,7 @@ body::after{
 }
 
 /* CURSOR GLOW */
+
 .cursor-glow{
     position:fixed;
     width:280px;
@@ -121,6 +130,7 @@ body::after{
 }
 
 /* HEADER */
+
 header{
     position:sticky;
     top:0;
@@ -203,6 +213,7 @@ nav a:hover::after{
 }
 
 /* SECTIONS */
+
 section{
     position:relative;
     z-index:2;
@@ -240,6 +251,7 @@ section{
 }
 
 /* HERO */
+
 .hero{
     min-height:calc(100vh - 72px);
     display:flex;
@@ -344,6 +356,7 @@ section{
 }
 
 /* MYSTERY CORE */
+
 .core{
     min-height:420px;
     position:relative;
@@ -432,6 +445,7 @@ section{
 }
 
 /* TERMINAL */
+
 .terminal{
     border:1px solid rgba(0,255,65,.18);
     background:
@@ -492,6 +506,7 @@ section{
 }
 
 /* CARDS */
+
 .card-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -569,6 +584,7 @@ section{
 }
 
 /* STATUS */
+
 .status-panel{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -611,6 +627,7 @@ section{
 }
 
 /* EDUCATION */
+
 .edu-list{
     display:grid;
     gap:10px;
@@ -654,6 +671,7 @@ section{
 }
 
 /* ABOUT */
+
 .about-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -689,6 +707,7 @@ section{
 }
 
 /* CONTACT */
+
 .contact-box{
     max-width:900px;
     margin:auto;
@@ -741,6 +760,7 @@ section{
 }
 
 /* FOOTER */
+
 footer{
     position:relative;
     z-index:2;
@@ -757,6 +777,7 @@ footer span{
 }
 
 /* ANIMATIONS */
+
 @keyframes pulse{
     0%,100%{
         opacity:.35;
@@ -769,13 +790,21 @@ footer span{
 }
 
 @keyframes rotate{
-    from{transform:rotate(0)}
-    to{transform:rotate(360deg)}
+    from{
+        transform:rotate(0);
+    }
+    to{
+        transform:rotate(360deg);
+    }
 }
 
 @keyframes rotateReverse{
-    from{transform:rotate(360deg)}
-    to{transform:rotate(0)}
+    from{
+        transform:rotate(360deg);
+    }
+    to{
+        transform:rotate(0);
+    }
 }
 
 @keyframes pulseRing{
@@ -790,15 +819,22 @@ footer span{
 }
 
 @keyframes blink{
-    0%,48%{opacity:1}
-    49%,100%{opacity:0}
+    0%,48%{
+        opacity:1;
+    }
+    49%,100%{
+        opacity:0;
+    }
 }
 
 @keyframes load{
-    from{width:0}
+    from{
+        width:0;
+    }
 }
 
 /* MOBILE */
+
 @media(max-width:900px){
 
     header{
@@ -917,6 +953,7 @@ footer span{
 <body>
 
 <canvas id="matrix"></canvas>
+
 <div class="vignette"></div>
 <div class="cursor-glow" id="cursorGlow"></div>
 
@@ -936,7 +973,6 @@ footer span{
     </nav>
 
 </header>
-
 
 <!-- HERO -->
 
@@ -977,7 +1013,6 @@ footer span{
 
         </div>
 
-
         <div class="core">
 
             <div class="core-ring ring1"></div>
@@ -997,7 +1032,6 @@ footer span{
     </div>
 
 </section>
-
 
 <!-- TERMINAL -->
 
@@ -1020,7 +1054,6 @@ footer span{
 
         </div>
 
-
         <div class="terminal">
 
             <div class="terminal-head">
@@ -1034,7 +1067,6 @@ footer span{
                 </span>
 
             </div>
-
 
             <div class="terminal-body" id="terminalBody">
 
@@ -1106,7 +1138,6 @@ footer span{
 
 </section>
 
-
 <!-- SERVICES -->
 
 <section id="services">
@@ -1128,7 +1159,6 @@ footer span{
             </p>
 
         </div>
-
 
         <div class="card-grid">
 
@@ -1198,7 +1228,6 @@ footer span{
 
 </section>
 
-
 <!-- DEFENSE STATUS -->
 
 <section>
@@ -1219,7 +1248,6 @@ footer span{
 
         </div>
 
-
         <div class="status-panel">
 
             <div class="status-box">
@@ -1235,7 +1263,6 @@ footer span{
 
             </div>
 
-
             <div class="status-box">
 
                 <div class="status-head">
@@ -1249,7 +1276,6 @@ footer span{
 
             </div>
 
-
             <div class="status-box">
 
                 <div class="status-head">
@@ -1262,7 +1288,6 @@ footer span{
                 </div>
 
             </div>
-
 
             <div class="status-box">
 
@@ -1282,7 +1307,6 @@ footer span{
     </div>
 
 </section>
-
 
 <!-- EDUCATION -->
 
@@ -1304,7 +1328,6 @@ footer span{
             </p>
 
         </div>
-
 
         <div class="edu-list">
 
@@ -1364,7 +1387,6 @@ footer span{
 
 </section>
 
-
 <!-- ABOUT -->
 
 <section id="about">
@@ -1381,489 +1403,9 @@ footer span{
 
         </div>
 
-
         <div class="about-grid">
 
             <div class="about-box">
 
                 <h3>DEMON CYBER COMMUNITY</h3>
-
-                <p>
-                    Community dan layanan yang berfokus pada
-                    pembelajaran cybersecurity, keamanan digital,
-                    defensive security, konsultasi, dan
-                    security assessment dengan otorisasi.
-                </p>
-
-                <div class="protocol">
-
-                    [ PROTOCOL ]<br>
-
-                    Semua aktivitas pengujian keamanan harus
-                    dilakukan pada sistem yang dimiliki sendiri
-                    atau telah mendapatkan izin dari pemiliknya.
-
-                </div>
-
-            </div>
-
-
-            <div class="about-box">
-
-                <h3>MISSION</h3>
-
-                <p>
-                    Mendorong budaya keamanan digital yang
-                    bertanggung jawab melalui edukasi,
-                    awareness, praktik defensif, dokumentasi,
-                    dan peningkatan keamanan sistem.
-                </p>
-
-                <div class="protocol">
-
-                    STATUS:
-                    <span class="term-green">
-                        DEFENSIVE_SECURITY
-                    </span>
-
-                    <br>
-
-                    MODE:
-                    <span class="term-green">
-                        AUTHORIZED
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section id="contact">
-
-    <div class="container">
-
-        <div class="contact-box">
-
-            <div class="section-title" style="margin-bottom:25px">
-
-                <div class="tag">
-                    06 // SECURE CHANNEL
-                </div>
-
-                <h2>OPEN CHANNEL</h2>
-
-            </div>
-
-            <p>
-                Untuk konsultasi cybersecurity, security awareness,
-                edukasi, atau pembahasan security assessment
-                yang authorized.
-            </p>
-
-
-            <div class="contact-links">
-
-                <a
-                    class="contact-link"
-                    href="mailto:adnanfarisi007@gmail.com"
-                >
-                    EMAIL // adnanfarisi007@gmail.com
-                </a>
-
-
-                <a
-                    class="contact-link"
-                    href="https://wa.me/6283870874140"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    WHATSAPP // OPEN CHANNEL
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-    DEMON CYBER COMMUNITY
-    <span>// DARK SECURITY COMMAND</span>
-
-    <br><br>
-
-    © 2026 — EDUCATION • DEFENSE • AUTHORIZED SECURITY
-
-</footer>
-
-
-<script>
-
-/* =========================================================
-   MATRIX RAIN V5.3
-   KODE TURUN KE BAWAH
-   ========================================================= */
-
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-
-let width;
-let height;
-let columns;
-let drops;
-let speeds;
-let lengths;
-
-const fontSize = 14;
-
-const characters =
-"01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#$%&<>[]{}/*+=-_|";
-
-function resizeMatrix(){
-
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-
-    columns = Math.floor(width / fontSize);
-
-    drops = [];
-    speeds = [];
-    lengths = [];
-
-    for(let i = 0; i < columns; i++){
-
-        drops[i] = Math.random() * -100;
-
-        /*
-         * Setiap kolom punya kecepatan berbeda
-         * supaya efek hujan kode terasa lebih natural.
-         */
-        speeds[i] =
-            0.35 +
-            Math.random() * 1.15;
-
-        lengths[i] =
-            8 +
-            Math.floor(Math.random() * 22);
-
-    }
-
-}
-
-resizeMatrix();
-
-window.addEventListener(
-    "resize",
-    resizeMatrix
-);
-
-
-function drawMatrix(){
-
-    /*
-     * Layer hitam transparan.
-     * Membuat jejak kode menghilang perlahan.
-     */
-    ctx.fillStyle = "rgba(0,0,0,0.085)";
-    ctx.fillRect(0,0,width,height);
-
-    ctx.font = fontSize + "px monospace";
-
-    for(let i = 0; i < columns; i++){
-
-        const x = i * fontSize;
-
-        const head =
-            Math.floor(
-                Math.random() * characters.length
-            );
-
-        /*
-         * Kepala kode lebih terang.
-         */
-        ctx.fillStyle =
-            "rgba(130,255,155,.72)";
-
-        ctx.fillText(
-            characters[head],
-            x,
-            drops[i] * fontSize
-        );
-
-
-        /*
-         * Ekor kode dibuat lebih redup.
-         */
-        for(
-            let j = 1;
-            j < lengths[i];
-            j++
-        ){
-
-            const y =
-                (drops[i] - j) * fontSize;
-
-            if(y < 0 || y > height){
-                continue;
-            }
-
-            const alpha =
-                Math.max(
-                    0.025,
-                    0.22 - j * 0.009
-                );
-
-            ctx.fillStyle =
-                "rgba(0,255,65," +
-                alpha +
-                ")";
-
-            const char =
-                characters[
-                    Math.floor(
-                        Math.random() *
-                        characters.length
-                    )
-                ];
-
-            ctx.fillText(
-                char,
-                x,
-                y
-            );
-
-        }
-
-
-        /*
-         * Reset ketika mencapai bawah.
-         */
-        if(
-            drops[i] * fontSize >
-            height +
-            lengths[i] * fontSize
-        ){
-
-            /*
-             * Tidak semua kolom restart bersamaan.
-             * Ini membuat background terlihat lebih hidup.
-             */
-            drops[i] =
-                -Math.random() * 45;
-
-            speeds[i] =
-                0.35 +
-                Math.random() * 1.15;
-
-            lengths[i] =
-                8 +
-                Math.floor(
-                    Math.random() * 22
-                );
-
-        }
-
-        drops[i] += speeds[i];
-
-    }
-
-    requestAnimationFrame(drawMatrix);
-
-}
-
-drawMatrix();
-
-
-/* =========================================================
-   CURSOR GLOW
-   ========================================================= */
-
-const glow =
-    document.getElementById(
-        "cursorGlow"
-    );
-
-window.addEventListener(
-    "mousemove",
-    function(event){
-
-        glow.style.left =
-            event.clientX + "px";
-
-        glow.style.top =
-            event.clientY + "px";
-
-    }
-);
-
-
-/* =========================================================
-   TERMINAL ANIMATION
-   ========================================================= */
-
-const terminal =
-    document.getElementById(
-        "terminalBody"
-    );
-
-let terminalVisible = false;
-
-const observer =
-    new IntersectionObserver(
-        function(entries){
-
-            entries.forEach(
-                function(entry){
-
-                    if(
-                        entry.isIntersecting &&
-                        !terminalVisible
-                    ){
-
-                        terminalVisible = true;
-
-                        terminal.animate(
-                            [
-                                {
-                                    opacity:.2,
-                                    transform:
-                                        "translateY(8px)"
-                                },
-                                {
-                                    opacity:1,
-                                    transform:
-                                        "translateY(0)"
-                                }
-                            ],
-                            {
-                                duration:700,
-                                easing:"ease-out"
-                            }
-                        );
-
-                    }
-
-                }
-            );
-
-        },
-        {
-            threshold:.25
-        }
-    );
-
-observer.observe(terminal);
-
-
-/* =========================================================
-   RANDOM CARD GLITCH
-   ========================================================= */
-
-const cards =
-    document.querySelectorAll(
-        ".card"
-    );
-
-setInterval(
-    function(){
-
-        if(!cards.length){
-            return;
-        }
-
-        const card =
-            cards[
-                Math.floor(
-                    Math.random() *
-                    cards.length
-                )
-            ];
-
-        card.animate(
-            [
-                {
-                    transform:
-                        "translateX(0)"
-                },
-                {
-                    transform:
-                        "translateX(-1px)"
-                },
-                {
-                    transform:
-                        "translateX(1px)"
-                },
-                {
-                    transform:
-                        "translateX(0)"
-                }
-            ],
-            {
-                duration:180
-            }
-        );
-
-    },
-    4500
-);
-
-
-/* =========================================================
-   TERMINAL CLOCK
-   ========================================================= */
-
-function updateConsoleTime(){
-
-    const now =
-        new Date();
-
-    const time =
-        now.toLocaleTimeString(
-            "id-ID",
-            {
-                hour12:false
-            }
-        );
-
-    document
-        .querySelectorAll(
-            ".terminal-title"
-        )
-        .forEach(
-            function(el){
-
-                el.textContent =
-                    "demon@cyber-command:~$ // " +
-                    time;
-
-            }
-        );
-
-}
-
-updateConsoleTime();
-
-setInterval(
-    updateConsoleTime,
-    1000
-);
-
-</script>
-
-</body>
-</html>
 ```
