@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,924 +7,763 @@
 
 <title>DEMON CYBER COMMUNITY | Dark Security Command</title>
 
-<meta name="description" content="DEMON CYBER COMMUNITY — Cybersecurity education, security awareness, defensive security, consultation, and authorized security assessment.">
-<meta name="keywords" content="cybersecurity, security awareness, web security, network defense, cyber education, incident response, ethical security">
+<meta name="description" content="DEMON CYBER COMMUNITY — komunitas edukasi cybersecurity, security awareness, defensive security, konsultasi dan authorized security assessment.">
+<meta name="keywords" content="cybersecurity, ethical hacking, security awareness, defensive security, cyber community, penetration testing, web security">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#010201">
+<meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
 
 <style>
-:root{
-    --bg:#000;
-    --panel:rgba(2,7,4,.88);
-    --green:#00ff41;
-    --green2:#39ff14;
-    --text:#eaffef;
-    --muted:#789080;
-    --line:rgba(0,255,65,.14);
-}
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-    scroll-behavior:smooth;
 }
 
 html{
-    background:#000;
+    scroll-behavior:smooth;
 }
 
 body{
-    font-family:"Courier New",Consolas,monospace;
-    background:
-        radial-gradient(circle at 50% -10%,rgba(0,255,65,.07),transparent 35%),
-        radial-gradient(circle at 90% 60%,rgba(0,255,65,.025),transparent 30%),
-        #000;
-    color:var(--text);
-    overflow-x:hidden;
     min-height:100vh;
+    background:#000;
+    color:#d8ffe2;
+    font-family:Consolas,Monaco,"Courier New",monospace;
+    overflow-x:hidden;
 }
 
 /* =========================================================
-   MATRIX BACKGROUND
+   MATRIX CANVAS
    ========================================================= */
 
 #matrix{
     position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
-    z-index:0;
-    pointer-events:none;
-    opacity:.55;
+    left:0;
+    top:0;
+    width:100vw;
+    height:100vh;
     display:block;
+
+    /* PENTING: jangan gunakan z-index negatif */
+    z-index:0;
+
+    pointer-events:none;
+    opacity:.72;
     background:#000;
 }
 
-/* DARK GRID */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:998;
-    pointer-events:none;
-    opacity:.11;
-    background:
-        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);
-    background-size:55px 55px;
-}
-
-/* SCANLINES */
-
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:997;
-    pointer-events:none;
-    opacity:.25;
-    background:repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 5px,
-        rgba(0,255,65,.018) 6px
-    );
-}
-
-/* VIGNETTE */
-
-.vignette{
+/* Layer hitam tipis agar Matrix tetap terlihat tapi tidak
+   mengganggu keterbacaan konten */
+.matrix-overlay{
     position:fixed;
     inset:0;
     z-index:1;
     pointer-events:none;
     background:
         radial-gradient(
-            ellipse at center,
-            transparent 30%,
-            rgba(0,0,0,.38) 72%,
-            rgba(0,0,0,.82) 100%
+            circle at center,
+            rgba(0,20,5,.08) 0%,
+            rgba(0,0,0,.28) 55%,
+            rgba(0,0,0,.55) 100%
         );
 }
 
-/* CURSOR GLOW */
-
-.cursor-glow{
+/* grid futuristik */
+body::before{
+    content:"";
     position:fixed;
-    width:280px;
-    height:280px;
-    border-radius:50%;
+    inset:0;
+    z-index:2;
     pointer-events:none;
-    z-index:996;
-    transform:translate(-50%,-50%);
-    background:radial-gradient(
-        circle,
-        rgba(0,255,65,.075),
-        rgba(0,255,65,.025) 35%,
-        transparent 70%
-    );
-    filter:blur(8px);
+    opacity:.13;
+    background-image:
+        linear-gradient(rgba(0,255,80,.13) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,255,80,.13) 1px,transparent 1px);
+    background-size:42px 42px;
 }
 
-/* HEADER */
+/* scanline */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:3;
+    pointer-events:none;
+    background:repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.025) 0px,
+        rgba(255,255,255,.025) 1px,
+        transparent 2px,
+        transparent 5px
+    );
+    opacity:.18;
+}
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+.container{
+    width:min(1120px,92%);
+    margin:auto;
+    position:relative;
+    z-index:10;
+}
+
+section{
+    position:relative;
+    z-index:10;
+    padding:100px 0;
+}
+
+h1,h2,h3{
+    text-shadow:
+        0 0 8px rgba(0,255,90,.35),
+        0 0 25px rgba(0,255,90,.12);
+}
+
+.green{
+    color:#39ff72;
+}
+
+.muted{
+    color:#91a99a;
+}
+
+.tag{
+    display:inline-block;
+    padding:8px 14px;
+    border:1px solid rgba(57,255,114,.35);
+    background:rgba(0,20,7,.55);
+    border-radius:999px;
+    color:#5cff87;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:20px;
+    box-shadow:
+        0 0 15px rgba(0,255,80,.08),
+        inset 0 0 15px rgba(0,255,80,.04);
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.section-title h2{
+    font-size:clamp(28px,5vw,48px);
+    color:#baffc8;
+    margin-bottom:14px;
+}
+
+.section-title p{
+    color:#829889;
+    max-width:700px;
+    margin:auto;
+    line-height:1.8;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 header{
     position:sticky;
     top:0;
     z-index:100;
+
+    background:rgba(0,5,2,.76);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(57,255,114,.22);
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
+}
+
+.nav{
     min-height:72px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 6%;
-    border-bottom:1px solid rgba(0,255,65,.16);
-    background:rgba(0,0,0,.84);
-    backdrop-filter:blur(18px);
-    box-shadow:
-        0 10px 40px rgba(0,0,0,.8),
-        0 0 25px rgba(0,255,65,.025);
+    gap:20px;
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    color:var(--green);
-    text-decoration:none;
-    font-weight:bold;
+    font-weight:900;
     letter-spacing:2px;
-    text-shadow:0 0 13px rgba(0,255,65,.45);
+    color:#55ff82;
+    text-shadow:
+        0 0 8px #00ff55,
+        0 0 25px rgba(0,255,80,.35);
 }
 
-.logo-symbol{
-    width:32px;
-    height:32px;
-    display:grid;
-    place-items:center;
-    border:1px solid var(--green);
-    position:relative;
-    box-shadow:
-        inset 0 0 15px rgba(0,255,65,.08),
-        0 0 15px rgba(0,255,65,.12);
-}
-
-.logo-symbol::before{
-    content:"";
-    position:absolute;
-    inset:5px;
-    border:1px dashed rgba(0,255,65,.4);
+.logo span{
+    color:#d9ffe1;
 }
 
 nav{
     display:flex;
-    gap:25px;
+    gap:22px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
 }
 
 nav a{
-    color:#829b89;
-    text-decoration:none;
-    font-size:12px;
-    letter-spacing:1px;
-    position:relative;
-    transition:.25s;
-}
-
-nav a::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-7px;
-    width:0;
-    height:1px;
-    background:var(--green);
-    box-shadow:0 0 8px var(--green);
-    transition:.3s;
+    color:#9db5a5;
+    font-size:13px;
+    transition:.25s ease;
 }
 
 nav a:hover{
-    color:var(--green);
+    color:#5cff87;
+    text-shadow:0 0 10px #00ff55;
 }
 
-nav a:hover::after{
-    width:100%;
-}
-
-/* SECTIONS */
-
-section{
-    position:relative;
-    z-index:2;
-    padding:100px 7%;
-}
-
-.container{
-    max-width:1250px;
-    margin:auto;
-}
-
-.section-title{
-    margin-bottom:45px;
-}
-
-.section-title .tag{
-    color:var(--green);
-    font-size:11px;
-    letter-spacing:4px;
-    margin-bottom:12px;
-}
-
-.section-title h2{
-    font-size:clamp(28px,4vw,48px);
-    letter-spacing:2px;
-    text-shadow:0 0 22px rgba(0,255,65,.13);
-}
-
-.section-title p{
-    max-width:680px;
-    color:var(--muted);
-    margin-top:14px;
-    line-height:1.8;
-    font-size:14px;
-}
-
-/* HERO */
+/* =========================================================
+   HERO
+   ========================================================= */
 
 .hero{
     min-height:calc(100vh - 72px);
     display:flex;
     align-items:center;
-    padding-top:70px;
-    padding-bottom:80px;
+    overflow:hidden;
 }
 
-.hero-grid{
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    gap:70px;
-    align-items:center;
-}
-
-.status-line{
-    display:inline-flex;
-    align-items:center;
-    gap:9px;
-    padding:8px 13px;
-    border:1px solid rgba(0,255,65,.17);
-    background:rgba(0,255,65,.025);
-    color:#8fc59a;
-    font-size:10px;
-    letter-spacing:2px;
-    margin-bottom:25px;
-}
-
-.status-dot{
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 12px var(--green);
-    animation:pulse 1.5s infinite;
+.hero-content{
+    max-width:900px;
 }
 
 .hero h1{
-    font-size:clamp(46px,7vw,92px);
-    line-height:.92;
-    letter-spacing:-3px;
-    color:#ecfff0;
-    text-shadow:
-        0 0 12px rgba(0,255,65,.14),
-        0 0 55px rgba(0,255,65,.035);
+    font-size:clamp(42px,8vw,88px);
+    line-height:.98;
+    margin-bottom:25px;
+    color:#d7ffe0;
 }
 
-.hero h1 span{
+.hero h1 .accent{
+    color:#39ff72;
     display:block;
-    color:var(--green);
-    text-shadow:
-        0 0 10px rgba(0,255,65,.5),
-        0 0 35px rgba(0,255,65,.2);
 }
 
-.hero-sub{
-    max-width:650px;
-    margin-top:28px;
-    color:#8ca891;
-    font-size:15px;
-    line-height:1.9;
+.hero p{
+    max-width:760px;
+    color:#9eb5a5;
+    font-size:clamp(15px,2vw,19px);
+    line-height:1.8;
+    margin-bottom:32px;
 }
 
-.hero-actions{
+.hero-buttons{
     display:flex;
-    gap:15px;
+    gap:14px;
     flex-wrap:wrap;
-    margin-top:32px;
 }
 
 .btn{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    min-height:45px;
+    min-height:48px;
     padding:0 22px;
-    text-decoration:none;
-    border:1px solid rgba(0,255,65,.45);
-    color:var(--green);
+    border-radius:8px;
+    font-weight:800;
+    font-size:13px;
+    letter-spacing:.5px;
+    transition:.25s ease;
+}
+
+.btn-primary{
+    color:#001b07;
+    background:#39ff72;
+    box-shadow:
+        0 0 15px rgba(57,255,114,.35),
+        0 0 35px rgba(57,255,114,.12);
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:
+        0 0 25px rgba(57,255,114,.55),
+        0 0 55px rgba(57,255,114,.2);
+}
+
+.btn-outline{
+    border:1px solid rgba(57,255,114,.4);
+    color:#6dff94;
+    background:rgba(0,15,5,.5);
+}
+
+.btn-outline:hover{
+    border-color:#39ff72;
+    background:rgba(0,255,80,.08);
+    transform:translateY(-3px);
+}
+
+.hero-status{
+    margin-top:45px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    color:#779180;
     font-size:12px;
-    letter-spacing:1px;
-    background:rgba(0,255,65,.035);
-    transition:.3s;
 }
 
-.btn:hover{
-    color:#000;
-    background:var(--green);
-    box-shadow:0 0 30px rgba(0,255,65,.3);
-    transform:translateY(-2px);
+.online-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#39ff72;
+    box-shadow:0 0 14px #39ff72;
+    animation:pulse 1.6s infinite;
 }
 
-.btn.secondary{
-    color:#8ba391;
-    border-color:rgba(255,255,255,.1);
-    background:rgba(255,255,255,.015);
+@keyframes pulse{
+    0%,100%{opacity:1;transform:scale(1)}
+    50%{opacity:.45;transform:scale(.75)}
 }
 
-.btn.secondary:hover{
-    color:var(--green);
-    background:rgba(0,255,65,.04);
-}
+/* =========================================================
+   MYSTERY CORE
+   ========================================================= */
 
-/* MYSTERY CORE */
+.mystery{
+    padding-top:40px;
+}
 
 .core{
-    min-height:420px;
     position:relative;
-    display:grid;
-    place-items:center;
-}
+    max-width:850px;
+    margin:auto;
+    padding:45px;
 
-.core-ring{
-    position:absolute;
-    border:1px solid rgba(0,255,65,.16);
-    border-radius:50%;
+    background:rgba(0,8,3,.68);
+    border:1px solid rgba(57,255,114,.24);
+    border-radius:18px;
+
     box-shadow:
-        inset 0 0 30px rgba(0,255,65,.025),
-        0 0 35px rgba(0,255,65,.025);
+        0 0 40px rgba(0,255,80,.07),
+        inset 0 0 35px rgba(0,255,80,.035);
+
+    backdrop-filter:blur(5px);
 }
 
-.ring1{
-    width:330px;
-    height:330px;
-    animation:rotate 24s linear infinite;
-}
-
-.ring2{
-    width:250px;
-    height:250px;
-    border-style:dashed;
-    animation:rotateReverse 17s linear infinite;
-}
-
-.ring3{
-    width:170px;
-    height:170px;
-    border-color:rgba(0,255,65,.35);
-    animation:pulseRing 3s ease-in-out infinite;
-}
-
-.core-center{
-    width:105px;
-    height:105px;
-    display:grid;
-    place-items:center;
-    border:1px solid var(--green);
-    color:var(--green);
-    background:#010301;
-    box-shadow:
-        inset 0 0 30px rgba(0,255,65,.08),
-        0 0 35px rgba(0,255,65,.15);
-    position:relative;
-}
-
-.core-center::before{
-    content:"";
+.core::before{
+    content:"SYSTEM CORE";
     position:absolute;
-    inset:10px;
-    border:1px dashed rgba(0,255,65,.45);
-}
-
-.core-center span{
-    font-size:12px;
+    top:-10px;
+    left:25px;
+    padding:3px 10px;
+    background:#020603;
+    color:#39ff72;
+    font-size:10px;
     letter-spacing:2px;
-    z-index:2;
 }
 
-.orbit{
-    position:absolute;
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 15px var(--green);
+.core h3{
+    font-size:25px;
+    color:#d8ffe1;
+    margin-bottom:20px;
 }
 
-.orbit.a{
-    top:45px;
-    left:50%;
+.core p{
+    color:#8ea394;
+    line-height:1.9;
 }
 
-.orbit.b{
-    right:35px;
-    bottom:100px;
-}
+/* =========================================================
+   TERMINAL
+   ========================================================= */
 
-.orbit.c{
-    left:35px;
-    bottom:120px;
+.terminal-wrap{
+    max-width:900px;
+    margin:auto;
 }
-
-/* TERMINAL */
 
 .terminal{
-    border:1px solid rgba(0,255,65,.18);
-    background:
-        linear-gradient(180deg,rgba(0,255,65,.025),rgba(0,0,0,.6)),
-        #020402;
-    box-shadow:
-        0 0 35px rgba(0,255,65,.05),
-        inset 0 0 70px rgba(0,0,0,.8);
     overflow:hidden;
+    border:1px solid rgba(57,255,114,.3);
+    border-radius:14px;
+    background:rgba(0,5,2,.84);
+    box-shadow:
+        0 0 45px rgba(0,255,80,.08),
+        inset 0 0 30px rgba(0,255,80,.03);
+    backdrop-filter:blur(7px);
 }
 
-.terminal-head{
-    height:40px;
+.terminal-top{
     display:flex;
     align-items:center;
     gap:7px;
-    padding:0 15px;
-    border-bottom:1px solid rgba(0,255,65,.12);
+    padding:12px 15px;
+    background:rgba(0,255,80,.035);
+    border-bottom:1px solid rgba(57,255,114,.15);
 }
 
-.term-dot{
-    width:7px;
-    height:7px;
+.terminal-top i{
+    width:9px;
+    height:9px;
     border-radius:50%;
-    border:1px solid rgba(0,255,65,.4);
+    background:#334;
 }
 
 .terminal-title{
-    margin-left:7px;
-    color:#587761;
+    margin-left:auto;
+    color:#59705f;
     font-size:10px;
     letter-spacing:1px;
 }
 
 .terminal-body{
-    min-height:285px;
-    padding:24px;
-    color:#75c485;
-    font-size:12px;
+    padding:25px;
+    min-height:280px;
+    font-size:13px;
     line-height:2;
 }
 
-.term-green{
-    color:var(--green);
+.prompt{
+    color:#39ff72;
 }
 
-.term-dim{
-    color:#46614c;
+.command{
+    color:#d8ffe1;
+}
+
+.output{
+    color:#7f9785;
 }
 
 .cursor{
     display:inline-block;
-    width:7px;
-    height:13px;
-    background:var(--green);
-    vertical-align:-2px;
-    animation:blink 1s infinite;
+    width:8px;
+    height:16px;
+    background:#39ff72;
+    vertical-align:middle;
+    box-shadow:0 0 8px #39ff72;
+    animation:blink .8s steps(1) infinite;
 }
 
-/* CARDS */
+@keyframes blink{
+    50%{opacity:0}
+}
 
-.card-grid{
+/* =========================================================
+   SERVICES
+   ========================================================= */
+
+.cards{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:18px;
 }
 
 .card{
-    min-height:220px;
-    padding:26px;
-    border:1px solid rgba(0,255,65,.11);
-    background:
-        linear-gradient(145deg,rgba(0,255,65,.025),rgba(0,0,0,.42)),
-        rgba(3,7,4,.88);
     position:relative;
+    padding:28px;
+
+    background:rgba(0,8,3,.66);
+    border:1px solid rgba(57,255,114,.17);
+    border-radius:14px;
+
+    transition:.3s ease;
     overflow:hidden;
-    transition:.35s;
+
+    backdrop-filter:blur(5px);
 }
 
-.card::before{
+.card::after{
     content:"";
     position:absolute;
-    left:0;
-    top:0;
-    width:100%;
-    height:1px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(0,255,65,.55),
-        transparent
-    );
-    transform:translateX(-100%);
-    transition:.6s;
+    width:130px;
+    height:130px;
+    right:-70px;
+    top:-70px;
+    border-radius:50%;
+    background:rgba(57,255,114,.06);
+    filter:blur(15px);
 }
 
 .card:hover{
-    border-color:rgba(0,255,65,.3);
-    transform:translateY(-5px);
+    transform:translateY(-7px);
+    border-color:rgba(57,255,114,.48);
     box-shadow:
-        0 20px 50px rgba(0,0,0,.7),
-        0 0 30px rgba(0,255,65,.035);
-}
-
-.card:hover::before{
-    transform:translateX(100%);
+        0 15px 45px rgba(0,0,0,.35),
+        0 0 25px rgba(0,255,80,.08);
 }
 
 .card-number{
-    color:#3f6449;
+    color:#39ff72;
     font-size:11px;
     letter-spacing:2px;
-}
-
-.card-icon{
-    width:45px;
-    height:45px;
-    display:grid;
-    place-items:center;
-    border:1px solid rgba(0,255,65,.2);
-    color:var(--green);
-    margin:22px 0;
-    font-size:16px;
+    margin-bottom:18px;
 }
 
 .card h3{
-    font-size:16px;
-    color:#d9ffe1;
-    margin-bottom:10px;
+    color:#c9ffd4;
+    margin-bottom:13px;
+    font-size:19px;
 }
 
 .card p{
-    color:#69806e;
-    font-size:12px;
-    line-height:1.8;
+    color:#809487;
+    line-height:1.75;
+    font-size:13px;
 }
 
-/* STATUS */
+/* =========================================================
+   STATUS
+   ========================================================= */
 
-.status-panel{
+.status-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
-
-.status-box{
-    border:1px solid rgba(0,255,65,.12);
-    background:#020502;
-    padding:28px;
-}
-
-.status-head{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:15px;
-    font-size:11px;
-}
-
-.status-head span:first-child{
-    color:#8da894;
-}
-
-.status-head span:last-child{
-    color:var(--green);
-}
-
-.bar{
-    height:4px;
-    background:#071008;
-    overflow:hidden;
-}
-
-.bar span{
-    display:block;
-    height:100%;
-    background:var(--green);
-    box-shadow:0 0 12px rgba(0,255,65,.6);
-    animation:load 2s ease-out;
-}
-
-/* EDUCATION */
-
-.edu-list{
-    display:grid;
-    gap:10px;
-}
-
-.edu-item{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    padding:18px 20px;
-    border:1px solid rgba(0,255,65,.09);
-    background:rgba(0,255,65,.015);
-    transition:.25s;
-}
-
-.edu-item:hover{
-    border-color:rgba(0,255,65,.25);
-    background:rgba(0,255,65,.025);
-}
-
-.edu-left{
-    display:flex;
-    align-items:center;
+    grid-template-columns:repeat(4,1fr);
     gap:15px;
 }
 
-.edu-id{
-    color:var(--green);
-    font-size:10px;
+.status-card{
+    text-align:center;
+    padding:25px 15px;
+    background:rgba(0,8,3,.62);
+    border:1px solid rgba(57,255,114,.15);
+    border-radius:12px;
+    backdrop-filter:blur(5px);
 }
 
-.edu-name{
-    color:#a7c2ad;
-    font-size:13px;
+.status-card strong{
+    display:block;
+    color:#4dff7d;
+    font-size:27px;
+    margin-bottom:8px;
 }
 
-.edu-level{
-    color:#49624f;
-    font-size:10px;
+.status-card span{
+    color:#718477;
+    font-size:11px;
 }
 
-/* ABOUT */
+/* =========================================================
+   EDUCATION
+   ========================================================= */
 
-.about-grid{
+.education-list{
+    max-width:900px;
+    margin:auto;
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:25px;
+    gap:14px;
 }
+
+.edu{
+    display:flex;
+    gap:18px;
+    padding:22px;
+
+    background:rgba(0,8,3,.64);
+    border-left:2px solid #39ff72;
+    border-top:1px solid rgba(57,255,114,.1);
+    border-right:1px solid rgba(57,255,114,.1);
+    border-bottom:1px solid rgba(57,255,114,.1);
+
+    border-radius:0 10px 10px 0;
+    backdrop-filter:blur(5px);
+}
+
+.edu-number{
+    color:#39ff72;
+    font-weight:bold;
+    min-width:32px;
+}
+
+.edu h3{
+    font-size:16px;
+    margin-bottom:7px;
+    color:#c9ffd4;
+}
+
+.edu p{
+    color:#758a7c;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
 
 .about-box{
-    padding:32px;
-    border:1px solid rgba(0,255,65,.11);
-    background:rgba(3,8,4,.7);
-}
+    max-width:900px;
+    margin:auto;
+    padding:38px;
 
-.about-box h3{
-    color:var(--green);
-    margin-bottom:18px;
-    font-size:15px;
+    background:rgba(0,8,3,.67);
+    border:1px solid rgba(57,255,114,.2);
+    border-radius:16px;
+
+    backdrop-filter:blur(6px);
 }
 
 .about-box p{
-    color:#738878;
-    font-size:13px;
+    color:#8a9d8f;
     line-height:1.9;
+    margin-bottom:16px;
 }
 
-.protocol{
-    margin-top:25px;
-    padding:18px;
-    border-left:2px solid var(--green);
-    background:rgba(0,255,65,.025);
-    color:#86a68e;
-    font-size:11px;
-    line-height:1.8;
+.warning{
+    padding:17px;
+    border-left:3px solid #39ff72;
+    background:rgba(57,255,114,.035);
+    color:#91a999;
+    font-size:12px;
+    line-height:1.7;
 }
 
-/* CONTACT */
+/* =========================================================
+   CONTACT
+   ========================================================= */
 
 .contact-box{
-    max-width:900px;
+    max-width:800px;
     margin:auto;
     text-align:center;
-    padding:60px 30px;
-    border:1px solid rgba(0,255,65,.16);
-    background:
-        radial-gradient(circle at center,rgba(0,255,65,.045),transparent 55%),
-        #020402;
+    padding:45px 25px;
+
+    background:rgba(0,8,3,.7);
+    border:1px solid rgba(57,255,114,.24);
+    border-radius:18px;
+
+    backdrop-filter:blur(7px);
+
     box-shadow:
-        0 30px 80px rgba(0,0,0,.8),
-        inset 0 0 80px rgba(0,255,65,.018);
+        0 0 50px rgba(0,255,80,.06);
 }
 
 .contact-box h2{
-    font-size:clamp(30px,5vw,58px);
-    color:#e8ffed;
+    font-size:clamp(28px,5vw,48px);
     margin-bottom:15px;
 }
 
 .contact-box p{
-    color:#718677;
-    max-width:650px;
-    margin:auto;
+    color:#879b8c;
     line-height:1.8;
-    font-size:13px;
+    margin-bottom:25px;
 }
 
-.contact-links{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:12px;
-    margin-top:30px;
+.contact-info{
+    margin:25px 0;
+    color:#6eff91;
+    font-size:14px;
+    word-break:break-word;
 }
 
-.contact-link{
-    color:var(--green);
-    border:1px solid rgba(0,255,65,.2);
-    padding:14px 18px;
-    text-decoration:none;
-    font-size:11px;
-    background:rgba(0,255,65,.02);
-    transition:.25s;
-}
-
-.contact-link:hover{
-    background:var(--green);
-    color:#000;
-}
-
-/* FOOTER */
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 footer{
     position:relative;
-    z-index:2;
-    padding:35px 7%;
-    border-top:1px solid rgba(0,255,65,.09);
-    color:#3f5645;
+    z-index:10;
+    padding:35px 0;
+    border-top:1px solid rgba(57,255,114,.13);
+    background:rgba(0,4,2,.78);
     text-align:center;
-    font-size:10px;
-    letter-spacing:1px;
 }
 
-footer span{
-    color:#5e8167;
+footer p{
+    color:#526458;
+    font-size:11px;
+    line-height:1.8;
 }
 
-/* ANIMATIONS */
-
-@keyframes pulse{
-    0%,100%{
-        opacity:.35;
-        transform:scale(.8);
-    }
-    50%{
-        opacity:1;
-        transform:scale(1.15);
-    }
+footer strong{
+    color:#67ff8c;
 }
 
-@keyframes rotate{
-    from{
-        transform:rotate(0);
-    }
-    to{
-        transform:rotate(360deg);
-    }
+/* =========================================================
+   CURSOR GLOW
+   ========================================================= */
+
+#cursorGlow{
+    position:fixed;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:999;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(
+        circle,
+        rgba(57,255,114,.08) 0%,
+        rgba(57,255,114,.025) 35%,
+        transparent 70%
+    );
 }
 
-@keyframes rotateReverse{
-    from{
-        transform:rotate(360deg);
-    }
-    to{
-        transform:rotate(0);
-    }
+/* =========================================================
+   GLITCH
+   ========================================================= */
+
+.glitch{
+    animation:glitch 4s infinite;
 }
 
-@keyframes pulseRing{
-    0%,100%{
-        transform:scale(.94);
-        box-shadow:0 0 15px rgba(0,255,65,.04);
+@keyframes glitch{
+    0%,92%,100%{
+        transform:translate(0);
     }
-    50%{
-        transform:scale(1.04);
-        box-shadow:0 0 35px rgba(0,255,65,.13);
+    93%{
+        transform:translate(-2px,1px);
     }
-}
-
-@keyframes blink{
-    0%,48%{
-        opacity:1;
+    94%{
+        transform:translate(2px,-1px);
     }
-    49%,100%{
-        opacity:0;
+    95%{
+        transform:translate(-1px,0);
     }
 }
 
-@keyframes load{
-    from{
-        width:0;
-    }
-}
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
-/* MOBILE */
-
-@media(max-width:900px){
-
-    header{
-        padding:0 20px;
-    }
+@media(max-width:850px){
 
     nav{
-        gap:12px;
+        display:none;
     }
 
-    nav a{
-        font-size:9px;
-    }
-
-    .hero-grid,
-    .about-grid,
-    .status-panel{
+    .cards{
         grid-template-columns:1fr;
     }
 
-    .hero{
-        padding-top:55px;
-    }
-
-    .core{
-        min-height:330px;
-    }
-
-    .ring1{
-        width:270px;
-        height:270px;
-    }
-
-    .ring2{
-        width:205px;
-        height:205px;
-    }
-
-    .ring3{
-        width:140px;
-        height:140px;
-    }
-
-    .card-grid{
-        grid-template-columns:1fr;
+    .status-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
     section{
-        padding:75px 5%;
-    }
-}
-
-@media(max-width:560px){
-
-    header{
-        min-height:65px;
-        padding:13px 16px;
-    }
-
-    .logo{
-        font-size:11px;
-    }
-
-    .logo-symbol{
-        width:27px;
-        height:27px;
-    }
-
-    nav{
-        gap:8px;
-    }
-
-    nav a{
-        font-size:8px;
+        padding:75px 0;
     }
 
     .hero{
-        min-height:auto;
-        padding-top:55px;
+        min-height:calc(100vh - 72px);
     }
+
+    .core,
+    .about-box{
+        padding:25px;
+    }
+}
+
+@media(max-width:500px){
 
     .hero h1{
-        font-size:47px;
+        font-size:48px;
     }
 
-    .hero-sub{
-        font-size:13px;
-    }
-
-    .hero-actions{
+    .hero-buttons{
         flex-direction:column;
     }
 
@@ -931,19 +771,17 @@ footer span{
         width:100%;
     }
 
+    .status-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
     .terminal-body{
-        font-size:10px;
+        font-size:11px;
         padding:18px;
     }
 
-    .contact-box{
-        padding:45px 18px;
-    }
-
-    .edu-item{
-        align-items:flex-start;
-        flex-direction:column;
-        gap:8px;
+    .edu{
+        padding:18px;
     }
 }
 </style>
@@ -951,79 +789,79 @@ footer span{
 
 <body>
 
-<canvas id="matrix"></canvas>
+<!-- =======================================================
+     MATRIX CANVAS
+     ======================================================= -->
 
-<div class="vignette"></div>
-<div class="cursor-glow" id="cursorGlow"></div>
+<canvas id="matrix"></canvas>
+<div class="matrix-overlay"></div>
+
+<div id="cursorGlow"></div>
+
+<!-- =======================================================
+     HEADER
+     ======================================================= -->
 
 <header>
+    <div class="container nav">
 
-    <a href="#home" class="logo">
-        <div class="logo-symbol">D</div>
-        DEMON_CYBER
-    </a>
+        <a href="#home" class="logo">
+            DEMON <span>CYBER</span>
+        </a>
 
-    <nav>
-        <a href="#services">SERVICES</a>
-        <a href="#terminal">TERMINAL</a>
-        <a href="#education">EDU</a>
-        <a href="#about">ABOUT</a>
-        <a href="#contact">CONTACT</a>
-    </nav>
+        <nav>
+            <a href="#home">HOME</a>
+            <a href="#core">CORE</a>
+            <a href="#terminal">TERMINAL</a>
+            <a href="#services">SERVICES</a>
+            <a href="#education">EDUCATION</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
 
+    </div>
 </header>
 
-<!-- HERO -->
+<!-- =======================================================
+     HERO
+     ======================================================= -->
 
 <section class="hero" id="home">
 
-    <div class="container hero-grid">
+    <div class="container">
 
-        <div>
+        <div class="hero-content">
 
-            <div class="status-line">
-                <span class="status-dot"></span>
-                SYSTEM ONLINE // AUTHORIZED MODE
+            <div class="tag">
+                [ SECURE • LEARN • DEFEND ]
             </div>
 
-            <h1>
+            <h1 class="glitch">
                 DEMON
-                <span>CYBER</span>
-                COMMUNITY
+                <span class="accent">CYBER COMMUNITY</span>
             </h1>
 
-            <p class="hero-sub">
-                Dark security command environment for cybersecurity
-                education, defensive security, security awareness,
-                consultation, and authorized security assessment.
+            <p>
+                Komunitas cyber security untuk pembelajaran,
+                security awareness, defensive security,
+                konsultasi dan pengujian keamanan yang
+                dilakukan secara legal dan berizin.
             </p>
 
-            <div class="hero-actions">
+            <div class="hero-buttons">
 
-                <a href="#services" class="btn">
-                    [ ACCESS SERVICES ]
+                <a href="#education" class="btn btn-primary">
+                    START LEARNING
                 </a>
 
-                <a href="#terminal" class="btn secondary">
-                    [ ENTER TERMINAL ]
+                <a href="#services" class="btn btn-outline">
+                    SECURITY SERVICES
                 </a>
 
             </div>
 
-        </div>
-
-        <div class="core">
-
-            <div class="core-ring ring1"></div>
-            <div class="core-ring ring2"></div>
-            <div class="core-ring ring3"></div>
-
-            <div class="orbit a"></div>
-            <div class="orbit b"></div>
-            <div class="orbit c"></div>
-
-            <div class="core-center">
-                <span>DEMON</span>
+            <div class="hero-status">
+                <span class="online-dot"></span>
+                SYSTEM ONLINE — DEFENSIVE MODE
             </div>
 
         </div>
@@ -1032,7 +870,55 @@ footer span{
 
 </section>
 
-<!-- TERMINAL -->
+<!-- =======================================================
+     CORE
+     ======================================================= -->
+
+<section id="core" class="mystery">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <div class="tag">
+                [ MYSTERY CORE ]
+            </div>
+
+            <h2>ENTER THE DARK</h2>
+
+            <p>
+                Memahami dunia cybersecurity dimulai dari
+                mengetahui bagaimana sistem dapat diserang
+                dan bagaimana sistem tersebut dapat dilindungi.
+            </p>
+
+        </div>
+
+        <div class="core">
+
+            <h3>
+                <span class="green">></span>
+                Knowledge Before Power
+            </h3>
+
+            <p>
+                DEMON CYBER COMMUNITY berfokus pada edukasi
+                cybersecurity, ethical hacking, secure coding,
+                security awareness dan defensive security.
+                Seluruh aktivitas pengujian keamanan harus
+                dilakukan pada sistem milik sendiri atau sistem
+                yang memiliki izin eksplisit.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+     TERMINAL
+     ======================================================= -->
 
 <section id="terminal">
 
@@ -1041,92 +927,77 @@ footer span{
         <div class="section-title">
 
             <div class="tag">
-                01 // COMMAND TERMINAL
+                [ COMMAND CENTER ]
             </div>
 
-            <h2>SECURITY CONSOLE</h2>
+            <h2>SECURITY TERMINAL</h2>
 
             <p>
-                Simulasi terminal visual untuk menggambarkan
-                monitoring dan defensive security workflow.
+                Simulasi terminal untuk menggambarkan
+                environment pembelajaran cybersecurity.
             </p>
 
         </div>
 
-        <div class="terminal">
+        <div class="terminal-wrap">
 
-            <div class="terminal-head">
+            <div class="terminal">
 
-                <span class="term-dot"></span>
-                <span class="term-dot"></span>
-                <span class="term-dot"></span>
+                <div class="terminal-top">
 
-                <span class="terminal-title">
-                    demon@cyber-command:~$
-                </span>
+                    <i></i>
+                    <i></i>
+                    <i></i>
 
-            </div>
-
-            <div class="terminal-body" id="terminalBody">
-
-                <div>
-                    <span class="term-green">root@demon</span>:~$
-                    initialize --defense
-                </div>
-
-                <div class="term-dim">
-                    [BOOT] Loading defensive security modules...
-                </div>
-
-                <div>
-                    [OK]
-                    <span class="term-green">
-                        WEB SECURITY
+                    <span class="terminal-title">
+                        demon@cyber:~/security
                     </span>
-                    initialized
+
                 </div>
 
-                <div>
-                    [OK]
-                    <span class="term-green">
-                        NETWORK DEFENSE
-                    </span>
-                    initialized
-                </div>
+                <div class="terminal-body">
 
-                <div>
-                    [OK]
-                    <span class="term-green">
-                        SECURITY AWARENESS
-                    </span>
-                    initialized
-                </div>
+                    <div>
+                        <span class="prompt">demon@cyber:~$</span>
+                        <span class="command"> whoami</span>
+                    </div>
 
-                <div>
-                    [OK]
-                    <span class="term-green">
-                        INCIDENT RESPONSE
-                    </span>
-                    initialized
-                </div>
+                    <div class="output">
+                        authorized_security_learner
+                    </div>
 
-                <br>
+                    <div>
+                        <span class="prompt">demon@cyber:~$</span>
+                        <span class="command"> security_mode</span>
+                    </div>
 
-                <div class="term-dim">
-                    authorization protocol:
-                </div>
+                    <div class="output">
+                        DEFENSIVE / AUTHORIZED ONLY
+                    </div>
 
-                <div>
-                    <span class="term-green">
-                        AUTHORIZED_SECURITY_ONLY
-                    </span>
-                </div>
+                    <div>
+                        <span class="prompt">demon@cyber:~$</span>
+                        <span class="command"> mission</span>
+                    </div>
 
-                <br>
+                    <div class="output">
+                        Learn • Analyze • Protect • Educate
+                    </div>
 
-                <div>
-                    <span class="term-green">root@demon</span>:~$
+                    <div>
+                        <span class="prompt">demon@cyber:~$</span>
+                        <span class="command"> status</span>
+                    </div>
+
+                    <div class="output">
+                        SYSTEM SECURE — COMMUNITY ONLINE
+                    </div>
+
+                    <br>
+
+                    <span class="prompt">demon@cyber:~$</span>
                     <span class="cursor"></span>
+
                 </div>
 
             </div>
@@ -1137,274 +1008,5 @@ footer span{
 
 </section>
 
-<!-- SERVICES -->
-
-<section id="services">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <div class="tag">
-                02 // COMMAND CENTER
-            </div>
-
-            <h2>CYBER SERVICES</h2>
-
-            <p>
-                Fokus pada keamanan defensif, edukasi,
-                konsultasi, dan pengujian yang dilakukan
-                dengan izin.
-            </p>
-
-        </div>
-
-        <div class="card-grid">
-
-            <div class="card">
-                <div class="card-number">MODULE_01</div>
-                <div class="card-icon">◈</div>
-                <h3>Security Assessment</h3>
-                <p>
-                    Evaluasi keamanan sistem dan aplikasi
-                    dalam ruang lingkup yang telah disetujui.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="card-number">MODULE_02</div>
-                <div class="card-icon">◇</div>
-                <h3>Web Security</h3>
-                <p>
-                    Edukasi dan pemeriksaan aspek keamanan
-                    aplikasi web secara authorized.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="card-number">MODULE_03</div>
-                <div class="card-icon">⬡</div>
-                <h3>Network Defense</h3>
-                <p>
-                    Konsep perlindungan jaringan, monitoring,
-                    hardening, dan security awareness.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="card-number">MODULE_04</div>
-                <div class="card-icon">△</div>
-                <h3>Security Awareness</h3>
-                <p>
-                    Membantu pengguna memahami phishing,
-                    password security, dan risiko digital.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="card-number">MODULE_05</div>
-                <div class="card-icon">◎</div>
-                <h3>Incident Response</h3>
-                <p>
-                    Pembelajaran mengenai proses identifikasi,
-                    containment, recovery, dan dokumentasi.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="card-number">MODULE_06</div>
-                <div class="card-icon">⌁</div>
-                <h3>Cyber Consultation</h3>
-                <p>
-                    Diskusi mengenai keamanan website,
-                    perangkat, jaringan, dan praktik defensif.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- DEFENSE STATUS -->
-
-<section>
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <div class="tag">
-                03 // DEFENSE MONITOR
-            </div>
-
-            <h2>SYSTEM STATUS</h2>
-
-            <p>
-                Visualisasi status modul defensive security.
-            </p>
-
-        </div>
-
-        <div class="status-panel">
-
-            <div class="status-box">
-
-                <div class="status-head">
-                    <span>WEB SECURITY</span>
-                    <span>ACTIVE</span>
-                </div>
-
-                <div class="bar">
-                    <span style="width:92%"></span>
-                </div>
-
-            </div>
-
-            <div class="status-box">
-
-                <div class="status-head">
-                    <span>NETWORK DEFENSE</span>
-                    <span>ACTIVE</span>
-                </div>
-
-                <div class="bar">
-                    <span style="width:86%"></span>
-                </div>
-
-            </div>
-
-            <div class="status-box">
-
-                <div class="status-head">
-                    <span>SECURITY AWARENESS</span>
-                    <span>READY</span>
-                </div>
-
-                <div class="bar">
-                    <span style="width:95%"></span>
-                </div>
-
-            </div>
-
-            <div class="status-box">
-
-                <div class="status-head">
-                    <span>INCIDENT RESPONSE</span>
-                    <span>READY</span>
-                </div>
-
-                <div class="bar">
-                    <span style="width:81%"></span>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- EDUCATION -->
-
-<section id="education">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <div class="tag">
-                04 // KNOWLEDGE DATABASE
-            </div>
-
-            <h2>CYBER EDUCATION</h2>
-
-            <p>
-                Materi pembelajaran untuk meningkatkan
-                kemampuan keamanan digital.
-            </p>
-
-        </div>
-
-        <div class="edu-list">
-
-            <div class="edu-item">
-                <div class="edu-left">
-                    <span class="edu-id">EDU_001</span>
-                    <span class="edu-name">
-                        Dasar-Dasar Cybersecurity
-                    </span>
-                </div>
-                <span class="edu-level">BEGINNER</span>
-            </div>
-
-            <div class="edu-item">
-                <div class="edu-left">
-                    <span class="edu-id">EDU_002</span>
-                    <span class="edu-name">
-                        Web Security Fundamentals
-                    </span>
-                </div>
-                <span class="edu-level">INTERMEDIATE</span>
-            </div>
-
-            <div class="edu-item">
-                <div class="edu-left">
-                    <span class="edu-id">EDU_003</span>
-                    <span class="edu-name">
-                        Network Defense Fundamentals
-                    </span>
-                </div>
-                <span class="edu-level">INTERMEDIATE</span>
-            </div>
-
-            <div class="edu-item">
-                <div class="edu-left">
-                    <span class="edu-id">EDU_004</span>
-                    <span class="edu-name">
-                        Phishing & Social Engineering Awareness
-                    </span>
-                </div>
-                <span class="edu-level">BEGINNER</span>
-            </div>
-
-            <div class="edu-item">
-                <div class="edu-left">
-                    <span class="edu-id">EDU_005</span>
-                    <span class="edu-name">
-                        Incident Response Fundamentals
-                    </span>
-                </div>
-                <span class="edu-level">ADVANCED</span>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section id="about">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <div class="tag">
-                05 // IDENTITY
-            </div>
-
-            <h2>ABOUT DEMON</h2>
-
-        </div>
-
-        <div class="about-grid">
-
-            <div class="about-box">
-
-                <h3>DEMON CYBER COMMUNITY</h3>
+<!-- ============================================
 ```
